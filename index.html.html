@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Casa Tinto Galería-Café · Cúcuta</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --tinto: #c8832a;
+      --tinto-dark: #a86820;
+      --bg-dark: #1a1008;
+      --bg-darker: #140d04;
+      --bg-mid: #1f1509;
+      --bg-card: #2d1a06;
+      --text-primary: #f5e8d0;
+      --text-secondary: #f0e8d8;
+      --text-muted: #a89070;
+      --text-faded: #7a6550;
+      --border: rgba(200,131,42,0.12);
+      --border-mid: rgba(200,131,42,0.15);
+      --border-accent: rgba(200,131,42,0.4);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2.5rem;
+      background: rgba(20,13,4,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--text-primary);
+      letter-spacing: 1px;
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--tinto); font-style: italic; }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 11px;
+      color: var(--text-faded);
+      text-decoration: none;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--tinto); }
+
+    .nav-cta {
+      background: var(--tinto);
+      color: var(--bg-dark) !important;
+      padding: 8px 18px;
+      border-radius: 4px;
+      font-weight: 500 !important;
+      letter-spacing: 0.5px !important;
+    }
+
+    .hamburger { display: none; cursor: pointer; color: var(--text-primary); font-size: 22px; }
+
+    /* HERO */
+    .hero {
+      position: relative;
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      overflow: hidden;
+      background: var(--bg-dark);
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 25% 35%, rgba(180,100,20,0.2) 0%, transparent 55%),
+        radial-gradient(ellipse at 78% 65%, rgba(120,50,10,0.18) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 90%, rgba(100,40,5,0.12) 0%, transparent 45%);
+    }
+
+    .hero-badge {
+      position: relative;
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--tinto);
+      border: 1px solid var(--border-accent);
+      padding: 6px 18px;
+      border-radius: 20px;
+      margin-bottom: 2rem;
+      animation: fadeUp 0.8s ease both;
+    }
+
+    .hero h1 {
+      position: relative;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 400;
+      line-height: 1.1;
+      color: var(--text-primary);
+      margin-bottom: 0.6rem;
+      animation: fadeUp 0.8s 0.1s ease both;
+    }
+
+    .hero h1 em { font-style: italic; color: var(--tinto); }
+
+    .hero-tagline {
+      position: relative;
+      font-size: 14px;
+      font-weight: 300;
+      color: var(--text-muted);
+      margin-bottom: 2.5rem;
+      max-width: 420px;
+      animation: fadeUp 0.8s 0.2s ease both;
+    }
+
+    .hero-tagline span { color: var(--tinto); margin: 0 6px; }
+
+    .hero-btns {
+      position: relative;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeUp 0.8s 0.3s ease both;
+    }
+
+    .btn-primary {
+      background: var(--tinto);
+      color: var(--bg-dark);
+      border: none;
+      padding: 14px 32px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 4px;
+      cursor: pointer;
+      letter-spacing: 0.5px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.1s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover { background: var(--tinto-dark); transform: translateY(-1px); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid rgba(240,232,216,0.25);
+      padding: 14px 32px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s, transform 0.1s;
+      display: inline-block;
+    }
+
+    .btn-secondary:hover { border-color: var(--tinto); color: var(--tinto); transform: translateY(-1px); }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-faded);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      animation: bounce 2s infinite;
+    }
+
+    /* SECTIONS */
+    section { padding: 5rem 2.5rem; }
+
+    .section-dark { background: var(--bg-darker); }
+    .section-mid { background: var(--bg-mid); }
+    .section-base { background: var(--bg-dark); }
+
+    .section-header { text-align: center; margin-bottom: 3rem; }
+
+    .section-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--tinto);
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 400;
+      color: var(--text-primary);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-sub {
+      font-size: 14px;
+      color: var(--text-faded);
+      font-weight: 300;
+    }
+
+    .sep {
+      width: 48px;
+      height: 1px;
+      background: var(--tinto);
+      margin: 1rem auto 0;
+      opacity: 0.5;
+    }
+
+    /* PILLARS */
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border-mid);
+      border: 1px solid var(--border-mid);
+      border-radius: 10px;
+      overflow: hidden;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .pillar {
+      background: var(--bg-darker);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      transition: background 0.2s;
+    }
+
+    .pillar:hover { background: var(--bg-dark); }
+
+    .pillar-icon {
+      font-size: 28px;
+      color: var(--tinto);
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .pillar h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--text-primary);
+      margin-bottom: 0.6rem;
+    }
+
+    .pillar p {
+      font-size: 13px;
+      color: var(--text-faded);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    /* MENU */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .menu-item {
+      background: var(--bg-darker);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      transition: border-color 0.2s, transform 0.15s;
+    }
+
+    .menu-item:hover { border-color: rgba(200,131,42,0.35); transform: translateY(-2px); }
+
+    .menu-emoji { font-size: 2rem; flex-shrink: 0; line-height: 1; }
+
+    .menu-info h4 {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 3px;
+    }
+
+    .menu-info p {
+      font-size: 12px;
+      color: var(--text-faded);
+      font-weight: 300;
+      margin-bottom: 8px;
+      line-height: 1.5;
+    }
+
+    .menu-price {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--tinto);
+    }
+
+    /* GALLERY */
+    .gallery {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 180px 180px;
+      gap: 6px;
+      border-radius: 10px;
+      overflow: hidden;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      background: var(--bg-card);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: rgba(200,131,42,0.25);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: background 0.2s;
+    }
+
+    .gallery-item:hover { background: #3a2010; }
+    .gallery-item:first-child { grid-row: 1 / 3; }
+    .gallery-item i { font-size: 32px; opacity: 0.3; color: var(--tinto); }
+
+    /* INFO */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .info-card {
+      background: var(--bg-darker);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.75rem;
+    }
+
+    .info-card h4 {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--tinto);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .info-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    /* MAP placeholder */
+    .map-placeholder {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      height: 200px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--text-faded);
+      font-size: 12px;
+      margin-top: 1.5rem;
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .map-placeholder i { font-size: 28px; color: var(--tinto); opacity: 0.5; }
+
+    /* CTA STRIP */
+    .cta-strip {
+      background: var(--tinto);
+      padding: 3rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1.5rem;
+      text-align: center;
+    }
+
+    .cta-strip p {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      font-style: italic;
+      color: var(--bg-dark);
+      font-weight: 400;
+    }
+
+    .cta-strip-btns { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+
+    .btn-dark {
+      background: var(--bg-dark);
+      color: var(--tinto);
+      border: none;
+      padding: 13px 28px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 500;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: transform 0.1s;
+    }
+
+    .btn-dark:hover { transform: translateY(-1px); }
+
+    .btn-outline-dark {
+      background: transparent;
+      color: var(--bg-dark);
+      border: 1px solid rgba(20,13,4,0.4);
+      padding: 13px 28px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: transform 0.1s;
+    }
+
+    .btn-outline-dark:hover { transform: translateY(-1px); }
+
+    /* FOOTER */
+    footer {
+      background: var(--bg-darker);
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--text-primary);
+    }
+
+    .footer-logo span { color: var(--tinto); font-style: italic; }
+
+    .footer-links { display: flex; gap: 1.5rem; }
+
+    .footer-links a {
+      font-size: 12px;
+      color: var(--text-faded);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--tinto); }
+
+    .footer-copy {
+      font-size: 11px;
+      color: var(--text-faded);
+      width: 100%;
+      text-align: center;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      margin-top: 1rem;
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 700px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg-darker);
+        padding: 1.5rem;
+        border-bottom: 1px solid var(--border);
+        gap: 1.5rem;
+      }
+      .hamburger { display: block; }
+
+      section { padding: 3.5rem 1.25rem; }
+
+      .pillars { grid-template-columns: 1fr; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .info-grid { grid-template-columns: 1fr; }
+
+      .gallery {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 140px 140px 140px;
+      }
+      .gallery-item:first-child { grid-row: auto; grid-column: 1 / 3; }
+
+      footer { flex-direction: column; align-items: flex-start; }
+      .footer-links { flex-wrap: wrap; }
+
+      .cta-strip { padding: 2.5rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="navbar">
+    <a href="#" class="nav-logo">Casa <span>Tinto</span></a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#nosotros">Nosotros</a></li>
+      <li><a href="#menu">Menú</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#visita">Visítanos</a></li>
+      <li><a href="#contacto" class="nav-cta">Reservar</a></li>
+    </ul>
+    <i class="ti ti-menu-2 hamburger" id="hamburger" aria-label="Abrir menú" role="button" tabindex="0"></i>
+  </nav>
+
+  <section class="hero" id="inicio">
+    <div class="hero-badge">Cúcuta, Colombia · Barrio Popular</div>
+    <h1>Arte, café<br>y <em>comunidad</em></h1>
+    <p class="hero-tagline">Una experiencia artística<span>·</span>gastronómica<span>·</span>musical</p>
+    <div class="hero-btns">
+      <a href="#menu" class="btn-primary">Ver menú</a>
+      <a href="#contacto" class="btn-secondary">Reservar espacio</a>
+    </div>
+    <div class="hero-scroll">
+      <i class="ti ti-chevron-down" aria-hidden="true"></i>
+    </div>
+  </section>
+
+  <section class="section-dark" id="nosotros">
+    <div class="section-header">
+      <p class="section-label">Lo que somos</p>
+      <h2 class="section-title">Tres experiencias,<br>un solo lugar</h2>
+      <div class="sep"></div>
+    </div>
+    <div class="pillars">
+      <div class="pillar">
+        <i class="ti ti-cup pillar-icon" aria-hidden="true"></i>
+        <h3>Cafetería & Restaurante</h3>
+        <p>Malteadas, frappuccinos, jugos naturales, sándwiches, ensaladas y cócteles con ingredientes frescos.</p>
+      </div>
+      <div class="pillar">
+        <i class="ti ti-palette pillar-icon" aria-hidden="true"></i>
+        <h3>Galería de Arte</h3>
+        <p>Exhibiciones de artistas locales, música en vivo y eventos culturales que celebran la creatividad.</p>
+      </div>
+      <div class="pillar">
+        <i class="ti ti-device-laptop pillar-icon" aria-hidden="true"></i>
+        <h3>Coworking</h3>
+        <p>Un espacio cómodo y con buena energía para trabajar, crear y conectar con una comunidad diversa.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-mid" id="menu">
+    <div class="section-header">
+      <p class="section-label">Lo mejor de la carta</p>
+      <h2 class="section-title">Nuestro menú</h2>
+      <p class="section-sub">Ingredientes frescos, sabor real</p>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <div class="menu-emoji">☕</div>
+        <div class="menu-info">
+          <h4>Frappuccino artesanal</h4>
+          <p>Base de espresso, leche y syrup de temporada al gusto</p>
+          <div class="menu-price">desde $8.000</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-emoji">🥤</div>
+        <div class="menu-info">
+          <h4>Malteada clásica</h4>
+          <p>Vainilla, fresa o chocolate con leche entera y crema</p>
+          <div class="menu-price">desde $9.500</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-emoji">🍹</div>
+        <div class="menu-info">
+          <h4>Jugo natural</h4>
+          <p>Frutas frescas de temporada, sin azúcar añadida</p>
+          <div class="menu-price">desde $6.000</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-emoji">🥗</div>
+        <div class="menu-info">
+          <h4>Ensalada fresca</h4>
+          <p>Vegetales de temporada con aderezo de la casa</p>
+          <div class="menu-price">desde $12.000</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-emoji">🥪</div>
+        <div class="menu-info">
+          <h4>Sándwich gourmet</h4>
+          <p>Pan artesanal, proteína a elección y acompañante</p>
+          <div class="menu-price">desde $14.000</div>
+        </div>
+      </div>
+      <div class="menu-item">
+        <div class="menu-emoji">🍸</div>
+        <div class="menu-info">
+          <h4>Cóctel de la casa</h4>
+          <p>Preparaciones especiales con ingredientes seleccionados</p>
+          <div class="menu-price">desde $18.000</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-base" id="galeria">
+    <div class="section-header">
+      <p class="section-label">Nuestro espacio</p>
+      <h2 class="section-title">Galería de fotos</h2>
+      <p class="section-sub">Aquí irían las fotos reales del lugar</p>
+    </div>
+    <div class="gallery">
+      <div class="gallery-item">
+        <i class="ti ti-photo" aria-hidden="true"></i>
+        <span>Foto principal</span>
+      </div>
+      <div class="gallery-item">
+        <i class="ti ti-coffee" aria-hidden="true"></i>
+        <span>Ambiente</span>
+      </div>
+      <div class="gallery-item">
+        <i class="ti ti-paint" aria-hidden="true"></i>
+        <span>Arte</span>
+      </div>
+      <div class="gallery-item">
+        <i class="ti ti-cup" aria-hidden="true"></i>
+        <span>Cafetería</span>
+      </div>
+      <div class="gallery-item">
+        <i class="ti ti-device-laptop" aria-hidden="true"></i>
+        <span>Coworking</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-dark" id="visita">
+    <div class="section-header">
+      <p class="section-label">Encuéntranos</p>
+      <h2 class="section-title">¿Dónde estamos?</h2>
+      <div class="sep"></div>
+    </div>
+    <div class="info-grid">
+      <div class="info-card">
+        <h4><i class="ti ti-map-pin" aria-hidden="true"></i> Ubicación</h4>
+        <p>Av 6e #5-10<br>Barrio Popular<br>Cúcuta, Norte de Santander<br>Colombia</p>
+      </div>
+      <div class="info-card">
+        <h4><i class="ti ti-clock" aria-hidden="true"></i> Horarios</h4>
+        <p>
+          Lunes – Viernes: 8:00am – 8:00pm<br>
+          Sábado: 9:00am – 9:00pm<br>
+          Domingo: 10:00am – 6:00pm
+        </p>
+      </div>
+    </div>
+    <div class="map-placeholder">
+      <i class="ti ti-map" aria-hidden="true"></i>
+      <span>Aquí iría el mapa de Google Maps embebido</span>
+    </div>
+  </section>
+
+  <div class="cta-strip" id="contacto">
+    <p>"Ven a quedarte un rato."</p>
+    <div class="cta-strip-btns">
+      <a href="https://wa.me/57XXXXXXXXXX" class="btn-dark">
+        <i class="ti ti-brand-whatsapp" aria-hidden="true"></i> WhatsApp
+      </a>
+      <a href="https://instagram.com/casa_tinto" class="btn-outline-dark" target="_blank" rel="noopener">
+        <i class="ti ti-brand-instagram" aria-hidden="true"></i> Instagram
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-logo">Casa <span>Tinto</span></div>
+    <div class="footer-links">
+      <a href="#nosotros">Nosotros</a>
+      <a href="#menu">Menú</a>
+      <a href="#galeria">Galería</a>
+      <a href="#visita">Visítanos</a>
+    </div>
+    <p class="footer-copy">© 2025 Casa Tinto Galería-Café · Cúcuta, Colombia · Diseño conceptual</p>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.getElementById('navLinks');
+    hamburger.addEventListener('click', () => navLinks.classList.toggle('open'));
+    navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => navLinks.classList.remove('open')));
+  </script>
+
+</body>
+</html>
